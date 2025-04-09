@@ -1,0 +1,22 @@
+{% extends 'tasks/index.html' %}
+{% block title %} Atualizar Registro {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Editar Registros</h1>
+
+<p>Após fazer modificações basta clicar no botão atualizar. Você será redirecionado para a aba de gerenciamento de serviços.</p>
+
+<div class="text-box">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Atualizar">
+
+    </form>
+
+</div>
+
+{% endblock %}

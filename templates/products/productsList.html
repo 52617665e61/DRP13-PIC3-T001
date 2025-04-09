@@ -1,0 +1,44 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Serviços Oferecidos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Produtos </h1>
+
+    <p> Uma lista de todos produtos.
+    </p>
+
+    
+    
+        <div class="table-responive table-edit" >
+            <h2>Lista de serviços</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>   
+                    <th>Descrição</th>
+                </tr>
+                {% for task in products %}
+                <tr>
+                    <td>  
+                        {% if task.img %}
+                            <img src="{{task.img.url}}" height="150" width="200">
+                        {% else %}
+                            sem imagem
+                        {% endif %}
+                    </td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.category}}</td>
+                    <td>{{task.value}}</td>
+                    <td>{{task.description}}</td>
+                </tr>
+                {%endfor %}
+            </table>
+        </div>
+    
+</div>
+{% endblock %}

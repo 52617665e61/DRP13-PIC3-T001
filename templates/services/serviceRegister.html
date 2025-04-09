@@ -1,0 +1,24 @@
+{% extends 'tasks/index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Adicionar Serviços {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Adicionar Serviço</h1>
+
+    <p></p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <input type="submit">
+
+    </form>
+
+</div>
+
+{% endblock %}

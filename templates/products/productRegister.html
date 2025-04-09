@@ -1,0 +1,24 @@
+{% extends 'tasks/index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Adicionar Produtos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Adicionar Produto</h1>
+
+    <p></p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <input type="submit">
+
+    </form>
+
+</div>
+
+{% endblock %}

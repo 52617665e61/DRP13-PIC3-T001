@@ -1,0 +1,38 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Lista de agendamentos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Agendamentos </h1>
+     
+    <div class="table-responive table-edit" >
+        <h2>Lista de agendamentos</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>id</th>
+                <th>Usuário</th>
+                <th>Serviço</th>   
+                <th>Endereço</th> 
+                <th>Número</th> 
+                <th>Horário para visita</th> 
+                <th>Descrição</th> 
+            </tr>
+            
+            {% for task in appoitments %}
+            <tr>
+                <td>{{task.id}}</td>
+                <td>{{task.user}}</td>
+                <td>{{task.servie}}</td>
+                <td>{{task.address}}</td>
+                <td>{{task.address_number}}</td>
+                <td>{{task.hour}}</td>
+                <td>{{task.description}}</td>
+            </tr>
+            {%endfor %}
+        </table>
+    </div>
+    
+</div>
+{% endblock %}

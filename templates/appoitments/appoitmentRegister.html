@@ -1,0 +1,24 @@
+{% extends 'tasks/index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Fazer Agendamento {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1>Agendamento</h1>
+
+    <p>Para fazer um agendamento conosco, basta preencher o formulário abaixo e pronto.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <input type="submit">
+
+    </form>
+
+</div>
+
+{% endblock %}

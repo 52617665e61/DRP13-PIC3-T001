@@ -1,0 +1,40 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Serviços Oferecidos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Serviços </h1>
+
+    <p> Segue a abaixo uma lista com todos os serviços oferecidos
+    </p>
+
+    
+    
+    <div class="table-responive table-edit" >
+        <h2>Lista de serviços</h2>
+        <a href="{% url 'addService' %}"><button> Adicionar Serviço </button></a>
+            <table class="table table-striped">
+                <tr>
+                    <th>Serviço</th>
+                    <th>Valor</th>
+                    <th>Descrição</th> 
+                    <th>Editar</th>  
+                    <th>Excluir</th>
+                </tr>
+                
+                {% for task in services %}
+                <tr>
+                    <td>{{task.service}}</td>
+                    <td>{{task.value}}</td>
+                    <td>{{task.description}}</td>
+                    <td><a href="{%url 'updateService' task.id %}"><button>Editar</button></a></td>
+                    <td><a href="{% url 'delService' task.id %}"><button>Excluir</button></a></td>
+                </tr>
+                {%endfor %}
+            </table>
+        </div>
+    
+</div>
+{% endblock %}

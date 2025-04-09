@@ -1,0 +1,35 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Serviços Oferecidos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Serviços </h1>
+
+    <p> Segue a abaixo uma lista com todos os serviços oferecidos
+    </p>
+
+    
+    
+        <div class="table-responive table-edit" >
+            <h2>Lista de serviços</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Serviço</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>   
+                </tr>
+                
+                {% for task in services %}
+                <tr>
+                    <td>{{task.service}}</td>
+                    <td>{{task.value}}</td>
+                    <td>{{task.description}}</td>
+                </tr>
+                {%endfor %}
+            </table>
+        </div>
+    
+</div>
+{% endblock %}

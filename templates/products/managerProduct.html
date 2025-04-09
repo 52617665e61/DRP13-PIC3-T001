@@ -1,0 +1,50 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Produtos Oferecidos {% endblock %}
+
+{% block content %}
+
+<div class="text-box">
+    <h1> Produtos </h1>
+
+    <p> Segue a abaixo uma lista com todos os produtos oferecidos
+    </p>
+
+    
+    
+    <div class="table-responive table-edit" >
+        <h2>Lista de Produtos</h2>
+        <a href="{% url 'addProduct' %}"><button> Adicionar Produto </button></a>
+            <table class="table table-striped">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Descrição</th> 
+                    <th>Editar</th>  
+                    <th>Excluir</th>
+                </tr>
+                
+                {% for task in services %}
+                <tr>
+                    <td>
+                        {% if task.img %}
+                            <img src="{{task.img.url}}" height="150" width="200">
+                        {% else %}
+                            sem imagem
+                        {% endif %}
+                    </td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.category}}</td>
+                    <td>{{task.value}}</td>
+                    <td>{{task.description}}</td>
+                    <td><a href="{%url 'updateProduct' task.id %}"><button>Editar</button></a></td>
+                    <td><a href="{% url 'delProduct' task.id %}"><button>Excluir</button></a></td>
+                </tr>
+                {%endfor %}
+            </table>
+        </div>
+    
+</div>
+{% endblock %}
