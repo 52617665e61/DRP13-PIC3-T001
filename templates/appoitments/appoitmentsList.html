@@ -12,6 +12,7 @@
         <table class="table table-striped">
             <tr>
                 <th>id</th>
+                <th>Situação</th>
                 <th>Usuário</th>
                 <th>Serviço</th>   
                 <th>Endereço</th> 
@@ -23,8 +24,9 @@
             {% for task in appoitments %}
             <tr>
                 <td>{{task.id}}</td>
+                <td>{{task.status}}</td>
                 <td>{{task.user}}</td>
-                <td>{{task.servie}}</td>
+                <td>{{task.service}}</td>
                 <td>{{task.address}}</td>
                 <td>{{task.address_number}}</td>
                 <td>{{task.hour}}</td>

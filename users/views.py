@@ -16,6 +16,7 @@ from appoitments.models import Appoitment
 
 
 
+
 ##########################################################################################################################
 
 # REGISTRO DE USUÁRIOS
@@ -29,7 +30,6 @@ class RegistroUsuario(CreateView):
 
     def form_valid(self, form):
         url = super().form_valid(form)
-        Perfil.objects.create(usuario=self.object)
         return url
 
     def get_context_data(self, *args,**kwargs):
