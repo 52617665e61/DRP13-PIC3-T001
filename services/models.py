@@ -2,16 +2,17 @@ from django.db import models
 
 
 categoryService = (
-    ('1','Conserto'),
-    ('2','Manutenção'),
-    ('3','Instalação')
+    ('Conserto','Conserto'),
+    ('Manutenção','Manutenção'),
+    ('Instalação','Instalação'),
+    ('Consulta', 'Consulta'),
     )
 
 class Service(models.Model):
     id = models.BigAutoField(primary_key=True)
-    service = models.CharField(max_length=30)
+    service = models.CharField(max_length=50)
     category = models.CharField(choices=categoryService)
-    value = models.CharField(max_length=10)
+    value = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
 
     def __str__(self):

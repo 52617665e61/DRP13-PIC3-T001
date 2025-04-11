@@ -1,6 +1,7 @@
 from django.db import models
 from  services.models import Service
 from users.models import NewUser
+import datetime
 
 status = (
     ('Visita em aberto', 'Visita em aberto'),
@@ -16,6 +17,7 @@ class Appoitment(models.Model):
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=50)
     address_number = models.IntegerField()
-    hour = models.CharField(max_length=50)
-    description = models.CharField(max_length=500)
+    date = models.CharField(max_length=8)
+    hour = models.CharField(max_length=40)
+    description = models.TextField()
     status = models.CharField(max_length=20, choices=status, default='Visita em aberto')

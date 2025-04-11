@@ -71,7 +71,7 @@ class RegistroUsuario(CreateView):
 @login_required
 def perfil(request):
     perfil = NewUser.objects.all().filter(id=request.user.id)
-    registros= Appoitment.objects.all().filter(id=request.user.id)
+    registros= Appoitment.objects.all().filter(user=request.user.user_name)
     return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros}) 
 
 

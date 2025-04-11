@@ -16,15 +16,17 @@ def addAppoitment(request):
         form = AppoitmentForm(request.POST, request.FILES)
         if form.is_valid():
             processo = form.save(commit=False)
-            processo.user = request.user.first_name
+            processo.user = request.user.user_name
+            processo.name = [request.user.first_name, request.user.last_name]
             processo.save()
-            return redirect('/')
+            return redirect('perfil')
     else:
         form = AppoitmentForm()
         return render(request, 'appoitments/appoitmentRegister.html', {'form': form})
+   
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required
 def info(request, id):
     info = Appoitment.objects.all().filter(id=id)
     return render(request, 'appoitments/info.html', {'info': info})

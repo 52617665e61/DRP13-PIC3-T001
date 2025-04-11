@@ -9,6 +9,14 @@ class formularioRegistroUsuario(UserCreationForm):
         model = NewUser
         fields = ('email', 'user_name', 'first_name', 'last_name', 'password1', 'password2')
 
+        labels = {
+            'email': 'E-mail',
+            'user_name': 'Nome de usuário',
+            'first_name' :'Nome',
+            'last_name' :'Sobrenome',
+            'password1' : 'Senha',
+            'password2' : 'Repita a senha'
+        }
     def clean_password2(self):
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
@@ -21,7 +29,6 @@ class formularioRegistroUsuario(UserCreationForm):
         # Save the provided password in hashed format
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.is_active = True
         if commit:
             user.save()
         return user

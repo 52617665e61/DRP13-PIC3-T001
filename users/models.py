@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 class CustomAccountManager(BaseUserManager):
 
-    def create_superuser(self, email, user_name, first_name, password, **other_fields):
+    def create_superuser(self, email, user_name, first_name, last_name, password, **other_fields):
 
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
@@ -18,7 +18,7 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
 
-        return self.create_user(email, user_name, first_name, password, **other_fields)
+        return self.create_user(email, user_name, first_name, last_name, password, **other_fields)
 
     def create_user(self, email, user_name, first_name, last_name, password2, **other_fields):
 
@@ -44,7 +44,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     about = models.TextField(_(
         'about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
