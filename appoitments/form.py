@@ -15,3 +15,12 @@ class AppoitmentForm(forms.ModelForm):
             'hour' :'Horário para visita',
             'description' : 'Descrição'
         }
+
+class UpdateAppoitmentForm(forms.ModelForm):
+    class Meta:
+        model = Appoitment
+        fields = ('status',)
+
+        labels = {
+            'status' : 'Estado'
+        }

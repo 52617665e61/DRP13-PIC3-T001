@@ -1,0 +1,35 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Informações sobre o animal {% endblock %}
+
+{% block content %}
+
+
+
+<div class="text-box">
+    
+    
+    {% for task in info %}
+
+
+    
+
+        <div class="info-full">
+
+            Id: {{task.id}}<br>
+            Usuário: {{task.user}}<br>
+            Nome: {{task.name}}<br>
+            Serviço: {{task.service}} <br>
+            Endereço: {{task.address}}<br>
+            Número: {{task.address_number}}<br>
+            Horário: {{task.hour}}<br>
+            Descrição: {{task.description}}<br>
+            Estado: {{task.status}}<br>
+                
+        </div>
+</div>
+
+    {% endfor %}
+
+
+{% endblock %}

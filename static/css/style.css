@@ -110,3 +110,9 @@ body{
     text-align: left;
     padding: 3em;
   }
+  .info-full{
+    
+    align-items: center;
+    justify-content: center;
+    line-height: 50px;
+}

@@ -19,6 +19,7 @@ def addService(request):
         form = ServiceForm()
         return render(request, 'services/serviceRegister.html', {'form': form})
 
+@user_passes_test(lambda u: u.is_superuser)
 def updateService(request, id):
     register = Service.objects.get(id=id)
     form = ServiceForm(request.POST or None, request.FILES or None,instance=register)

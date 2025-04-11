@@ -3,10 +3,10 @@ from  services.models import Service
 from users.models import NewUser
 
 status = (
-    ('1', 'Visita em aberto'),
-    ('2', 'A caminho'),
-    ('3', 'Situação pendente'),
-    ('4', 'Concluido')
+    ('Visita em aberto', 'Visita em aberto'),
+    ('A caminho', 'A caminho'),
+    ('Situação pendente', 'Situação pendente'),
+    ('Concluido', 'Concluido')
 )
 
 class Appoitment(models.Model):
@@ -18,4 +18,4 @@ class Appoitment(models.Model):
     address_number = models.IntegerField()
     hour = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
-    status = models.CharField(max_length=20, choices=status, default='1')
+    status = models.CharField(max_length=20, choices=status, default='Visita em aberto')

@@ -18,7 +18,8 @@
                 <th>Endereço</th> 
                 <th>Número</th> 
                 <th>Horário para visita</th> 
-                <th>Descrição</th> 
+                <th>Detalhes</th> 
+                <th>Atualizar</th>
             </tr>
             
             {% for task in appoitments %}
@@ -30,7 +31,8 @@
                 <td>{{task.address}}</td>
                 <td>{{task.address_number}}</td>
                 <td>{{task.hour}}</td>
-                <td>{{task.description}}</td>
+                <td><a href="{% url 'info' task.id %}">Mais Informções</a></td>
+                <td><a href="{% url 'updateAppoitment' task.id %}"><button>Atualizar</button></a></td>
             </tr>
             {%endfor %}
         </table>

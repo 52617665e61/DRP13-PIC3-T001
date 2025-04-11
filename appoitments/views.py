@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Appoitment
-from .form import AppoitmentForm
+from .form import AppoitmentForm, UpdateAppoitmentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from users.models import NewUser
 
@@ -22,5 +22,21 @@ def addAppoitment(request):
     else:
         form = AppoitmentForm()
         return render(request, 'appoitments/appoitmentRegister.html', {'form': form})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def info(request, id):
+    info = Appoitment.objects.all().filter(id=id)
+    return render(request, 'appoitments/info.html', {'info': info})
+
+@user_passes_test(lambda u: u.is_superuser)
+def updateAppoitment(request, id):
+    register = Appoitment.objects.get(id=id)
+    form = UpdateAppoitmentForm(request.POST or None, request.FILES or None,instance=register)
+    if form.is_valid():
+        form.save()
+        return redirect('appoitmentsList')
+    return render(request, 'appoitments/updateAppoitment.html', {'register': register, 
+                                                         'form':form})
 
 
