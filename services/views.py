@@ -37,5 +37,10 @@ def delService(request, id):
 @user_passes_test(lambda u: u.is_superuser)
 def manager(request):
     services = Service.objects.all().order_by('-id')
-    return render(request, 'services/managerService.html', {'services':services})
+    totalService = Service.objects.all().count()
+    context = {
+        'services':services, 
+        'totalService':totalService
+    }
+    return render(request, 'services/managerService.html', context)
 

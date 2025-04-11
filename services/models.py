@@ -8,7 +8,7 @@ categoryService = (
     )
 
 class Service(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     service = models.CharField(max_length=30)
     category = models.CharField(choices=categoryService)
     value = models.CharField(max_length=10)

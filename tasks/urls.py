@@ -2,5 +2,7 @@ from django.urls import path
 from tasks import views
 
 urlpatterns = [
-    path('', views.home)
+    path('', views.home),
+    path('home', views.homeAdmin, name='homeAdmin'),
+    path('home', views.homeUser, name='homeUser'),
 ]

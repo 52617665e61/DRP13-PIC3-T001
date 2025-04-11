@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from .models import Perfil
+from .models import  NewUser
 from appoitments.models import Appoitment
 
 
@@ -71,8 +71,8 @@ class RegistroUsuario(CreateView):
 
 @login_required
 def perfil(request):
-    perfil = Perfil.objects.all().filter(usuario=request.user.id)
-    registros= Appoitment.objects.all().filter(usuario=request.user.id)
+    perfil = NewUser.objects.all().filter(id=request.user.id)
+    registros= Appoitment.objects.all().filter(id=request.user.id)
     return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros}) 
 
 

@@ -5,12 +5,26 @@
 {% block content %}
 
 <div class="text-box">
-    <h1> Bem vindo </h1>
 
-    <p> bem vindo {{request.user.first_name}}
+    <h1>Place Holder Nome da empresa</h1>
+
+    <h2>Espaço reservado para colocar uma breve apresentação</h2>
+
+    <div class="apresentation_image">
+        <img src ='\static\tasks\exemplo_logo.png'>
+    </div>
+
+    <div class="apresentation">
+        <p> Breve apresentação sobre a empresa ou do tipo de serviços prestados</p>
+        <p>Contatos: (XX) XXXXX-XXXX ou localparaemail@dominio.com</p>
+        
+        </div>
+    <p>Para ver os serviços que tem a oferecer basta acessar <a href="serviceList">Serviços</a></p>
+
+    <p>Para consultar as linhas de produtos que trabalhamos basta acessar <a href="productList">Produtos</a></p>
+
+    <p>Para fazer um agendameto conosco basta acessar <a href="addAppoitment">Fazer Agendamento</a>, lembre-se que para fazer um agendamento conosco é necessário ter uma conta no  nosso sistema.
     </p>
 
-    
-    
 </div>
 {% endblock %}

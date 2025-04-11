@@ -11,90 +11,51 @@
     <a href="excluirPerfil">Excluir Perfil</a>
     </p>
 
-{% for task in perfil %}
+    {% for task in perfil %}
 
-Usuario: {{user.username}}<br>
-E-mail: {{user.email}}<br>
-Nome: {{task.primeiroNome}}<br>
-Sobrenome: {{task.ultimoNome}}<br>
-
-{% endfor %}
+    Usuario: {{user.user_name}}<br>
+    E-mail: {{user.email}}<br>
+    Nome: {{task.first_name}}<br>
+    
+    
+    {% endfor %}
 </div>
 
-    <div class="table-responive table-edit">
-        <h2>Meus Registros de encontrados</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Imagem</th>
-                <th>Nome</th>
-                <th>Espécie</th>
-                <th>Raça</th>
-                <th>Cor</th>
-                <th>Tamanho</th>
-                <th>Opções</th>
-                
-                
-            </tr>
+<div class="table-responive table-edit">
+    <h2>Meus Registros de encontrados</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Espécie</th>
+            <th>Raça</th>
+            <th>Cor</th>
+            <th>Tamanho</th>
+            <th>Opções</th>
             
-            {% for task in registros %}
-            {% if task.tipoRegistro == 'Encontrado' %}
-                <td>
-                {% if task.img %}
-                    <img src="{{task.img.url}}" height="150" width="200">
-                {% else %}
-                    sem imagem
-                {% endif %}
-                </td>
-                <td>{{task.especie}}</td>
-                <td>{{task.nome}}</td>
-                <td>{{task.raca}}</td>
-                <td>{{task.cor}}</td>
-                <td>{{task.tamanho}}</td>
-                <td><a href="informacoes/{{task.id}}">Mais informações</a><br>
-                <a href ="informacoes/editarRegistro/{{task.id}}">Editar</a><br>
-                <a href=>Excluir</a></td>          
-            </tr>
+            
+        </tr>
+        
+        {% for task in registros %}
+            <td>
+            {% if task.img %}
+                <img src="{{task.img.url}}" height="150" width="200">
+            {% else %}
+                sem imagem
             {% endif %}
-            {% endfor %}
-        </table>
-    </div>
+            </td>
+            <td>{{task.id}}</td>
+            <td>{{task.name}}</td>
+            <td>{{task.service}}</td>
+            <td>{{task.address}}</td>
+            <td>{{task.address_number}}</td>
+                      
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
-    <div class="table-responive table-edit">
-        <h2>Meus Registros de perdidos</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Imagem</th>
-                <th>Nome</th>
-                <th>Espécie</th>
-                <th>Raça</th>
-                <th>Cor</th>
-                <th>Tamanho</th>
-                <th>Opções</th>
-                
-                
-            </tr>
-            
-           
-            {% for task in registros %}
-            {% if task.tipoRegistro == 'Perdido' %}
-                <td>
-                {% if task.img %}
-                    <img src="{{task.img.url}}" height="150" width="200">
-                {% else %}
-                    sem imagem
-                {% endif %}
-                </td>
-                <td>{{task.especie}}</td>
-                <td>{{task.nome}}</td>
-                <td>{{task.raca}}</td>
-                <td>{{task.cor}}</td>
-                <td>{{task.tamanho}}</td>
-                <td><a href="informacoes/{{task.id}}">Mais informações</a><br>
-                <a href ="informacoes/editarRegistro/{{task.id}}">Editar</a><br>
-                <a href="{% url 'deletaRegistro' task.id%}"">Excluir</a></td>          
-            </tr>
-            {% endif %}
-            {%endfor %}
+
             
         </table>
     </div>

@@ -10,7 +10,7 @@ def appoitmentsList(request):
     return render(request, 'appoitments/appoitmentsList.html', {'appoitments': appoitments})
 
 
-
+@login_required
 def addAppoitment(request):
     if request.method == 'POST':
         form = AppoitmentForm(request.POST, request.FILES)

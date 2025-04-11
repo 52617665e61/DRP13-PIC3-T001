@@ -14,7 +14,7 @@ mark = (
 
 
 class Product(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=30)
     category = models.CharField(choices=categoryProduct)
     value = models.DecimalField(max_digits=20, decimal_places=2)

@@ -5,7 +5,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ('service','category', 'value', 'description')
+        fields = ('id','service','category', 'value', 'description')
 
         labels = {
             'service': 'Serviço',

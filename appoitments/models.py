@@ -3,14 +3,14 @@ from  services.models import Service
 from users.models import NewUser
 
 status = (
-    ('Visita em aberto', '1'),
+    ('1', 'Visita em aberto'),
     ('2', 'A caminho'),
     ('3', 'Situação pendente'),
     ('4', 'Concluido')
 )
 
 class Appoitment(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     user = models.CharField()
     name = models.CharField()
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)

@@ -95,3 +95,18 @@ body{
         rgba(29, 0, 19, 0.7));
     background-repeat: no-repeat;
 }
+
+.apresentation_image{
+    width: 50%;
+    display: inline-block;
+    padding: 3em;
+
+  }
+
+.apresentation{
+    width: 40%;
+    display: inline-block;
+    flex-direction: column;
+    text-align: left;
+    padding: 3em;
+  }
