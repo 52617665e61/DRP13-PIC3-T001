@@ -4,21 +4,24 @@ from django import forms
 from .models import NewUser
 
 class formularioRegistroUsuario(UserCreationForm):
-    '''#id = forms.
-    email = forms.EmailField()
-    primeiroNome = forms.CharField(max_length=30)
-    ultimoNome = forms.CharField(max_length=30)
-    contact = forms.CharField(max_length=16)
 
-    class Meta:
-        model = User
-        fields = ('username', 'primeiroNome', 'ultimoNome', 'email', 'contact', 'password1', 'password2')'''
-    
-    
     class Meta:
         model = NewUser
-        fields = ('email','user_name', 'first_name')
+        fields = ('email', 'user_name', 'first_name', 'last_name', 'password1', 'password2')
 
-        labels = {
-            
-        }
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        user.is_active = True
+        if commit:
+            user.save()
+        return user

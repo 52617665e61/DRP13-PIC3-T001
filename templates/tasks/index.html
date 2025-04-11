@@ -23,6 +23,16 @@
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
+                                {% if request.user.is_authenticated  and not request.user.is_superuser%}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{%url 'homeUser' %}">Página Inicial </a>
+                                </li>
+                                {%endif%}
+                                {% if request.user.is_superuser  %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{%url 'homeAdmin' %}">Página Inicial </a>
+                                </li>
+                                {%endif%}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{%url 'servicesList' %}">Serviços </a>
                                 </li>
