@@ -1,4 +1,6 @@
 
+import datetime
+import requests
 from typing import Any
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -12,6 +14,9 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .models import  NewUser
 from appoitments.models import Appoitment
+from django.conf import settings
+
+
 
 
 
@@ -38,40 +43,40 @@ class RegistroUsuario(CreateView):
         
         return context
     
-
-    """if request.method=="POST":
-        form = formularioRegistroUsuario(request.POST)
-        if form.is_valid():
-            form.save()
-            usuario = form.cleaned_data['username']
-            senha = form.cleaned_data['password1']
-            user = authenticate(username=usuario, password=senha)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = formularioRegistroUsuario()
-
-
-    return render(request, 'registration/registroUsuario.html',{'form':form})
-"""
-
-'''class Perfil(UpdateView):
-    template_name='refistration/perfil.html'
-    model = Perfil
-    fields = ['nome-completo', 'cpf']
-    success_url = reverse_lazy('index')
-
-    
-    def get_context_data(self, *args, **kwargs: Any) -> dict[str, Any]:
-          context = super().get_context_data(*args, **kwargs)
-          context['titulo'] = 'Meus dados'
-          context['botao'] = 'Atualizar'
-          return super().get_context_data'''
-
 @login_required
 def perfil(request):
     perfil = NewUser.objects.all().filter(id=request.user.id)
     registros= Appoitment.objects.all().filter(user=request.user.user_name)
     return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros}) 
+
+def weather(request):
+    api_key = '0e4658549f8960c37a67ff75efa79522'
+    city = request.GET.get('city', 'Dracena')
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=pt&appid={api_key}'
+    
+    weather_data = {}
+    error_message = None
+    
+    try:
+        response = requests.get(url).json()
+
+        if response.get('cod') !=200:
+            raise ValueError(f"City '{city}' not found.")
+        
+        weather_data = {
+            'city': city,
+            'temperature': response['main']['temp'],
+            'description': response['weather'][0]['description'],
+            'humidity': response['main']['humidity'],
+            'wind_speed': response['wind']['speed']
+        }
+    except ValueError as e:
+        error_message = str(e)
+
+    return render(request, 'registration/weather.html', {'weather_data': weather_data, 'error_message': error_message})
+    
+  
+
+
 
 
