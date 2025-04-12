@@ -4,6 +4,8 @@ from .form import AppoitmentForm, UpdateAppoitmentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from users.models import NewUser
 
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def appoitmentsList(request):
     appoitments = Appoitment.objects.all().order_by('-id')

@@ -37,7 +37,7 @@
                 {{form|crispy}}
 
                 <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
+                  <button onclick="message()" type="submit" class="btn btn-primary">
                     Cadastrar
                   </button>
                 </div>
@@ -54,5 +54,11 @@
 </div>
 </body>
 </html>
+
+<script>
+  function message(){
+    alert('Cadastrado com sucesso. \n Você sera redirecionado para a página ne login. ')
+  }
+</script>
 
 {% endblock %}

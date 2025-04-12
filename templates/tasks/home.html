@@ -19,12 +19,14 @@
         <p>Contatos: (XX) XXXXX-XXXX ou localparaemail@dominio.com</p>
         
         </div>
-    <p>Para ver os serviços que tem a oferecer basta acessar <a href="serviceList">Serviços</a></p>
+    <p>Para ver os serviços que tem a oferecer basta acessar <a onclick="test()" href="{% url 'servicesList' %}">Serviços</a></p>
 
-    <p>Para consultar as linhas de produtos que trabalhamos basta acessar <a href="productList">Produtos</a></p>
+    <p>Para consultar as linhas de produtos que trabalhamos basta acessar <a href="productsList">Produtos</a></p>
 
     <p>Para fazer um agendameto conosco basta acessar <a href="addAppoitment">Fazer Agendamento</a>, lembre-se que para fazer um agendamento conosco é necessário ter uma conta no  nosso sistema.
     </p>
 
 </div>
+
+
 {% endblock %}
