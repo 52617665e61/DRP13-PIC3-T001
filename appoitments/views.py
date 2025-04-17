@@ -6,6 +6,7 @@ from users.models import NewUser
 
 
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def appoitmentsList(request):
     appoitments = Appoitment.objects.all().order_by('-id')
