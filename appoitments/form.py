@@ -17,6 +17,11 @@ class AppoitmentForm(forms.ModelForm):
             'description' : 'Descrição'
         }
 
+        widgets = {
+            'date' : forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
+        }
+
+
 class UpdateAppoitmentForm(forms.ModelForm):
     class Meta:
         model = Appoitment
