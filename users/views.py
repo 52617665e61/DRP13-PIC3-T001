@@ -44,10 +44,11 @@ class RegistroUsuario(CreateView):
         return context
     
 @login_required
-def perfil(request):
+def perfil(request, alert=False):
+    alert = request.session.get('alert')
     perfil = NewUser.objects.all().filter(id=request.user.id)
     registros= Appoitment.objects.all().filter(user=request.user.user_name)
-    return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros}) 
+    return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros, 'alert':alert}) 
 
 def weather(request):
     api_key = '0e4658549f8960c37a67ff75efa79522'
