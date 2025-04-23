@@ -1,30 +1,28 @@
-function chart1(url){
-    fetch(url, {
-        method: 'get',
-    }).then(function(result){
-        return result.json()
-    })
+function chart(chartId, label, values){
+  const labels = label;
+  const data = values;
+     // Criando o gráfico de barras
+     const ctx = document.getElementById(chartId).getContext('2d');
+     const serviceChart = new Chart(ctx, {
+         type: 'bar',  // Tipo de gráfico (barra)
+         data: {
+             labels: labels,  // Rótulos dos serviços
+             datasets: [{
+                 label: 'Quantidade de Serviços',
+                 data: data,  // Quantidade de ocorrências de cada serviço
+                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                 borderColor: 'rgba(54, 162, 235, 1)',
+                 borderWidth: 1
+             }]
+   },
+   options: {
+     scales: {
+       y: {
+         beginAtZero: true
+       }
+     }
+   }
+ });
 }
 
-function chart(){
-  const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
