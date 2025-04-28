@@ -79,6 +79,13 @@
                                 </li>
                                 {% endif %}
 
+                                {% if request.user.is_superuser%}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard">Dashboard</a>
+                                </li>
+
+                                {% endif %}
+
                                 {% if request.user.is_authenticated%}
                                 <li class="nav-item">
                                         <form action="{% url 'logout' %}" method="post">
