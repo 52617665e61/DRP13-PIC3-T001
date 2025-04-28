@@ -3,6 +3,8 @@ from .models import Appoitment
 from .form import AppoitmentForm, UpdateAppoitmentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from users.models import NewUser
+from django.utils import timezone
+from django.urls import reverse, reverse_lazy
 
 
 
@@ -14,14 +16,20 @@ def appoitmentsList(request):
 
 
 @login_required
-def addAppoitment(request):
+def addAppoitment(request, alert=False):
     if request.method == 'POST':
         form = AppoitmentForm(request.POST, request.FILES)
         if form.is_valid():
             processo = form.save(commit=False)
+            consult_appoitments = Appoitment.objects.all().filter(date = processo.date)
+            if len(consult_appoitments) > 0:
+               for appoitment in consult_appoitments:
+                    if processo.hour == appoitment.hour:
+                        return render(request, 'appoitments/appoitmentRegister.html', {'form':form, 'alert':True})
             processo.user = request.user.user_name
             processo.name = [request.user.first_name, request.user.last_name]
             processo.save()
+            request.session['alert'] = True
             return redirect('perfil')
     else:
         form = AppoitmentForm()

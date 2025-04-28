@@ -1,0 +1,26 @@
+{% extends 'tasks/index.html' %}
+
+{% block title %} Análises {% endblock %}
+
+{% block content %} 
+
+<div class="text-box">
+
+    <div>
+      <canvas id="myChart" width="10" height="2">
+      </canvas>
+    </div>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const labels = JSON.parse('{{ service_labels_json|escapejs }}');
+        const data = JSON.parse('{{ service_values_json|escapejs }}')
+        chart('myChart', labels, data);
+        });
+      </script>
+    
+    </div>
+
+    
+{% endblock %}

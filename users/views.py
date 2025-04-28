@@ -15,10 +15,8 @@ from django.urls import reverse_lazy
 from .models import  NewUser
 from appoitments.models import Appoitment
 from django.conf import settings
-
-
-
-
+import json
+from collections import Counter
 
 
 
@@ -42,12 +40,35 @@ class RegistroUsuario(CreateView):
         
         
         return context
+
+
+def analisy(request):
+    # Recupera todos os Appointment
+    appointments = Appoitment.objects.all()
+
+    # Conta as ocorrências de cada serviço
+    services = [appointment.service.service for appointment in appointments if appointment.service is not None]
+    service_counts = dict(Counter(services))
+
+    # Prepara os dados para o gráfico
+    service_labels = list(service_counts.keys())
+    service_values = list(service_counts.values())
+
+    service_labels_json = json.dumps(service_labels)
+    service_values_json = json.dumps(service_values)
+
+    return render(request, 'manager/analisy.html', {
+        'service_labels_json': service_labels_json,
+        'service_values_json': service_values_json
+    })
     
+
 @login_required
-def perfil(request):
+def perfil(request, alert=False):
+    alert = request.session.get('alert')
     perfil = NewUser.objects.all().filter(id=request.user.id)
     registros= Appoitment.objects.all().filter(user=request.user.user_name)
-    return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros}) 
+    return render(request, 'registration/perfil.html', {'perfil':perfil, 'registros': registros, 'alert':alert}) 
 
 def weather(request):
     api_key = '0e4658549f8960c37a67ff75efa79522'

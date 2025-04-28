@@ -21,4 +21,12 @@
 
 </div>
 
+{% if alert %}
+<script>
+    alert(`Já existe um agendamento nesse dia e horário.
+        Caso Queira manter o horário agende outro dia.
+        Caso Queira manter o dia altere o horário.`)
+</script>
+{% endif %}
+
 {% endblock %}
