@@ -30,3 +30,11 @@
 {% endif %}
 
 {% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setupDynamicHourSelection();
+    });
+</script>
+{% endblock %}

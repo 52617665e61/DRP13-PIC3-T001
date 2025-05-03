@@ -25,4 +25,39 @@ function chart(chartId, label, values){
  });
 }
 
+// static/js/scripts.js
+function setupDynamicHourSelection(dateFieldId = "id_date", hourFieldId = "id_hour") {
+  const dateField = document.getElementById(dateFieldId);
+  const hourField = document.getElementById(hourFieldId);
 
+  if (!dateField || !hourField) return;
+
+  dateField.addEventListener("change", function () {
+      const selectedDate = this.value;
+      if (!selectedDate) return;
+
+      fetch(`/get-available-hours/?date=${selectedDate}`)
+          .then(response => response.json())
+          .then(data => {
+              hourField.innerHTML = '';
+              if (data.hours.length === 0) {
+                  const option = document.createElement('option');
+                  option.text = "Nenhum horário disponível";
+                  option.value = "";
+                  hourField.add(option);
+              } else {
+                  data.hours.forEach(hour => {
+                      const option = document.createElement('option');
+                      option.text = hour;
+                      option.value = hour;
+                      hourField.add(option);
+                  });
+              }
+          })
+          .catch(error => {
+              console.error("Erro ao buscar horários disponíveis:", error);
+          });
+  });
+}
+
+console.log("scripts.js carregado");  // ← Adicione isso para teste
