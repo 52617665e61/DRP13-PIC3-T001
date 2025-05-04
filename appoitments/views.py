@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Appoitment
-from .forms import AppoitmentForm, UpdateAppoitmentForm
+from .form import AppoitmentForm, UpdateAppoitmentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from users.models import NewUser
 from django.utils import timezone
