@@ -20,7 +20,6 @@ def addProduct(request):
         form = ProductForm()
         return render(request, 'products/productRegister.html', {'form': form})
 
-@user_passes_test(lambda u: u.is_superuser)
 def updateProduct(request, id):
     register = Product.objects.get(id=id)
     form = ProductForm(request.POST or None, request.FILES or None,instance=register)
