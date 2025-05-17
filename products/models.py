@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 categoryProduct = (
     ('Climatizador', 'Climatizador'),
@@ -20,7 +21,7 @@ class Product(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
     category = models.CharField(choices=categoryProduct)
-    value = models.DecimalField(max_digits=100, decimal_places=2)
+    value = models.DecimalField(max_digits=100, decimal_places=2, validators=[MinValueValidator(0.01)])
     description = models.CharField(max_length=500)
     img = models.ImageField(null=True, blank=True, upload_to='products/')
 
